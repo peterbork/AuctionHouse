@@ -5,8 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AuctionHouseServer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="560" Width="890.667">
     <Grid>
-        
+        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="473" VerticalAlignment="Top" Width="230" Margin="10,10,0,0"/>
+        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="230" Height="23" Margin="10,488,0,0"/>
+        <ListBox x:Name="listBox_Copy" HorizontalAlignment="Left" Height="445" VerticalAlignment="Top" Width="230" Margin="633,10,0,0"/>
+        <Button x:Name="button1_Copy" Content="Button" HorizontalAlignment="Left" Margin="633,488,0,0" VerticalAlignment="Top" Width="113" Height="23"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="113" Margin="633,460,0,0"/>
+        <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="112" Margin="751,460,0,0"/>
+        <TextBox x:Name="textBox_Copy1" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="112" Margin="751,488,0,0"/>
+        <Button x:Name="button1_Copy1" Content="Button" HorizontalAlignment="Left" Margin="505,488,0,0" VerticalAlignment="Top" Width="123" Height="23"/>
+        <Label x:Name="label" Content="Label" HorizontalAlignment="Left" Margin="250,488,0,0" Height="23" VerticalAlignment="Top" Width="123"/>
+        <ListView x:Name="listView" HorizontalAlignment="Left" Height="445" VerticalAlignment="Top" Width="383" Margin="245,38,0,0">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label x:Name="label_Copy" Content="Label" HorizontalAlignment="Left" Margin="378,488,0,0" Height="23" VerticalAlignment="Top" Width="122"/>
+        <Label x:Name="label_Copy1" Content="Label" HorizontalAlignment="Left" Margin="505,10,0,0" Height="23" VerticalAlignment="Top" Width="122"/>
+        <Label x:Name="label_Copy2" Content="Label" HorizontalAlignment="Left" Margin="251,10,0,0" Height="23" VerticalAlignment="Top" Width="249"/>
+
     </Grid>
 </Window>
