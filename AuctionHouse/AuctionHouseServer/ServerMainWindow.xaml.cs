@@ -22,13 +22,17 @@ namespace AuctionHouseServer {
         Server Server;
         public MainWindow() {
             InitializeComponent();
-            Server = new Server(1337);
-            Thread serverThread = new Thread(Server.Start);
-            serverThread.Start();
         }
 
         public void UpdateClientList(List<string> clientIps) {
             ClientListBox.ItemsSource = clientIps;
+        }
+
+        private void StartAuction_Click(object sender, RoutedEventArgs e) {
+            string biddingItem = BiddingItem.Text;
+            Server = new Server(biddingItem, 1337);
+            Thread serverThread = new Thread(Server.Start);
+            serverThread.Start();
         }
     }
 }

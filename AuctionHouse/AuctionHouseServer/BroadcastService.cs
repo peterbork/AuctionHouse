@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace AuctionHouseServer {
-    class BroadcastService {
-        public delegate void BroadcastEventHandler(string msg);
+    public class BroadcastService {
+        public delegate void BroardCastEventHandler(string msg);  // Intern type-declaration ~ intern klasse - husk public
 
-        public event BroadcastEventHandler BroadcastEvent;
+        public event BroardCastEventHandler BroardCastEvent;      // collection af metoder der skal kaldes
 
         private string name;
 
@@ -16,12 +16,12 @@ namespace AuctionHouseServer {
             this.name = name;
         }
         public string Name {
-            get { return name; }
+            get { return this.name; }
         }
 
-        public void BroadcastMessage (string msg) {
-            if (BroadcastEvent != null)
-                BroadcastMessage(msg);
+        public void BroadCastBesked(string msg) {
+            if (this.BroardCastEvent != null)   // check at objekt findes - mindst een har været tilmeldt med +=
+                BroardCastEvent(msg);           // aktiver alle tilmeldte metoder
         }
     }
 }

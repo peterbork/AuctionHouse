@@ -10,30 +10,53 @@ using System.Threading;
 
 namespace AuctionHouseServer
 {
-    class Server {
-        private BroadcastService broadcastService = new BroadcastService("Socket rum");
-        private int Port;
+    public class Server {
+        private BroadcastService broadcastService = new BroadcastService("Socket chat-rum");
+        private int port;
 
-        public Server(int port) {
-            Port = port;
+        private string biddingItem;
+        private double bid = 0;
+
+        public Server(string item, int port) {
+            biddingItem = item;
+            this.port = port;
         }
 
         public void Start() {
-            IPAddress ip = IPAddress.Parse("127.0.0.1");
-            TcpListener listener = new TcpListener(ip, Port);
-            listener.Start();
+            System.Console.WriteLine("Server startet på port:" + port);
 
-            Console.WriteLine("Server start");
+            IPAddress ip = IPAddress.Parse("127.0.0.1");
+            TcpListener listener = new TcpListener(ip, port);
+            listener.Start();
 
             while (true) {
                 Socket clientSocket = listener.AcceptSocket();
 
-                ClientHandler handler = new ClientHandler(clientSocket, broadcastService);
+                System.Console.WriteLine("Kunde forbundet");
 
-                Thread clientThread = new Thread(handler.StartClient);
-                clientThread.Start();
+                ClientHandler handler = new ClientHandler(this, clientSocket, broadcastService);
+
+                // Her sættes op til af behandling foregår parallel
+                // så der kan fortsættes med en ny
+                Thread clientTråd = new Thread(handler.RunClient);
+                clientTråd.Start();
             }
         }
 
+        public string GetBiddingItem() {
+            return biddingItem;
+        }
+
+        public double GetBid() {
+            return bid;
+        }
+
+        public bool ApplyBid(double bid) {
+            if (bid > this.bid) {
+                this.bid = bid;
+                return true;
+            } else
+                return false;
+        }
     }
 }

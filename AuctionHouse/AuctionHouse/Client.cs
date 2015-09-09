@@ -45,7 +45,10 @@ namespace AuctionHouse {
             while (!stopped) {
                 try {
                     string message = reader.ReadLine();
-                    Controller.MessageReceiver(message);
+                    if (message.Contains(":"))
+                        Controller.MessageReceiver(message);
+                    else
+                        Console.WriteLine(message);
 
                     Console.WriteLine(message);
                 }catch(IOException) {
