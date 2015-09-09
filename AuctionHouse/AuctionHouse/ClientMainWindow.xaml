@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:AuctionHouse"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         mc:Ignorable="d"
-        Title="Auktionshuset" Height="503.21" Width="734.241">
+        Title="Auktionshuset" Height="503.21" Width="734.241"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <ListBox x:Name="BidListBox" HorizontalAlignment="Left" Height="321" VerticalAlignment="Top" Width="228" Margin="10,143,0,0"/>
         <Label x:Name="label" Content="Auktionshuset" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="96" Margin="10,10,0,0" Width="619"/>

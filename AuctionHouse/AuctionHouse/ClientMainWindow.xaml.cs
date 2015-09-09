@@ -28,8 +28,12 @@ namespace AuctionHouse {
         }
 
         private void button_Click(object sender, RoutedEventArgs e) {
-            double bid = double.Parse(BidTextBox.Text);
-            controller.SendBid(bid);
+            try {
+                double bid = double.Parse(BidTextBox.Text);
+                controller.SendBid(bid);
+            } catch(FormatException) {
+                MessageBox.Show("Buddet skal være et tal");
+            }
         }
 
         public void BidReceiver(string bid) {
