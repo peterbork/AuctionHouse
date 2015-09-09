@@ -10,11 +10,13 @@ namespace AuctionHouse {
 
         Client client;
         MainWindow mainWindow;
-        ThreadMonitor threadMonitor = new ThreadMonitor("tt");
+        ThreadMonitor threadMonitor = new ThreadMonitor();
 
         public Controller(MainWindow window) {
             mainWindow = window;
-            threadMonitor.ThreadEvent += mainWindow.BidReceiver;
+            // Set up element events
+            threadMonitor.NewBidEvent += mainWindow.BidReceiver;
+            threadMonitor.ChangeBiddingItemEvent += mainWindow.SetBiddingItem;
 
             client = new Client(this, "127.0.0.1", 1337);
             client.SetMonitor(threadMonitor);
@@ -29,11 +31,11 @@ namespace AuctionHouse {
         public void MessageReceiver(string message) {
             string command = message.Split(':')[0];
             string parameter = message.Split(':')[1];
-
+            Console.WriteLine("called");
             if (command == "Bid") {
-                threadMonitor.ThreadAction(parameter);
+                threadMonitor.NewBid(parameter);
             }else if (command == "SetBiddingItem") {
-                mainWindow.SetBiddingItem(parameter);
+                threadMonitor.ChangeBiddingItem(parameter);
             }else if (command == "Error") {
                 mainWindow.DisplayError(parameter);
             }

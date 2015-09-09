@@ -7,17 +7,15 @@ using System.Threading.Tasks;
 
 namespace AuctionHouse {
     class ThreadMonitor {
-        public delegate void ThreadEventType(string message);      // Her defineres "metode-typen": returtype=void, parameterliste=(string)
-        public event ThreadEventType ThreadEvent;                   // Her erklæres en "delegat-metode", hvor man kan indsætte metoder, der skal kaldes 
+        public delegate void ThreadEventType(string message);
+        public event ThreadEventType NewBidEvent;
+        public event ThreadEventType ChangeBiddingItemEvent;
 
-        string name;
-
-        public ThreadMonitor(string name) {
-            this.name = name;
+        public void NewBid(string message) {
+            NewBidEvent(message);
         }
-
-        public void ThreadAction(string message) {
-            ThreadEvent(message);
+        public void ChangeBiddingItem(string message) {
+            ChangeBiddingItemEvent(message);
         }
     }
 }

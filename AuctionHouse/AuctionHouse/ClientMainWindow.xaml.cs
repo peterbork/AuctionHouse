@@ -37,6 +37,10 @@ namespace AuctionHouse {
         }
 
         public void SetBiddingItem(string item) {
+            if (!this.Dispatcher.CheckAccess()) {
+                this.Dispatcher.Invoke(new ThreadMonitor.ThreadEventType(SetBiddingItem), item);  // indirekte recursion, men nu fra GUI tråd
+                return;     // stop her, da metoden nu "gentages" (Invoke) fra GUI tråd  
+            }
             BiddingItem.Content = item;
         }
 
