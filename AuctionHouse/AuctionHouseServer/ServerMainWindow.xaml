@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="560" Width="890.667">
     <Grid>
-        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="473" VerticalAlignment="Top" Width="230" Margin="10,10,0,0"/>
+        <ListBox x:Name="ClientListBox" HorizontalAlignment="Left" Height="473" VerticalAlignment="Top" Width="230" Margin="10,10,0,0"/>
         <Button x:Name="button" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="230" Height="23" Margin="10,488,0,0"/>
         <ListBox x:Name="listBox_Copy" HorizontalAlignment="Left" Height="445" VerticalAlignment="Top" Width="230" Margin="633,10,0,0"/>
         <Button x:Name="button1_Copy" Content="Button" HorizontalAlignment="Left" Margin="633,488,0,0" VerticalAlignment="Top" Width="113" Height="23"/>

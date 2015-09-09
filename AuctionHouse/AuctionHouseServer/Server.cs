@@ -6,41 +6,34 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
 
 namespace AuctionHouseServer
 {
-    class Server
-    {
-        private IPAddress ip;
-        private int port;
-        private volatile bool stop = false;
+    class Server {
+        private BroadcastService broadcastService = new BroadcastService("Socket rum");
+        private int Port;
 
-        public Server(string ip, string port)
-        {
-            this.ip = IPAddress.Parse(ip);
-            this.port = int.Parse(port);
+        public Server(int port) {
+            Port = port;
         }
 
-        public void Run()
-        {
-            TcpListener listener = new TcpListener(ip, port);
+        public void Start() {
+            IPAddress ip = IPAddress.Parse("127.0.0.1");
+            TcpListener listener = new TcpListener(ip, Port);
             listener.Start();
-            while (!stop)
-            {
-                // Modtager klient
+
+            Console.WriteLine("Server start");
+
+            while (true) {
                 Socket clientSocket = listener.AcceptSocket();
 
-                // Streams
-                NetworkStream netStream = new NetworkStream(clientSocket);
-                StreamWriter writer = new StreamWriter(netStream);
-                StreamReader reader = new StreamReader(netStream);
+                ClientHandler handler = new ClientHandler(clientSocket, broadcastService);
 
-                // Lukker forbindelser
-                writer.Close();
-                reader.Close();
-                netStream.Close();
-                clientSocket.Close();
+                Thread clientThread = new Thread(handler.StartClient);
+                clientThread.Start();
             }
         }
+
     }
 }
