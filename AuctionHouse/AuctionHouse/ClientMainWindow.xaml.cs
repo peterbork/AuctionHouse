@@ -36,12 +36,16 @@ namespace AuctionHouse {
             }
         }
 
+        public void SetBiddingItem(string item) {
+            BiddingItem.Content = item;
+        }
+
         public void BidReceiver(string bid) {
             if (!this.Dispatcher.CheckAccess()) {
                 this.Dispatcher.Invoke(new ThreadMonitor.ThreadEventType(BidReceiver), bid);  // indirekte recursion, men nu fra GUI tråd
                 return;     // stop her, da metoden nu "gentages" (Invoke) fra GUI tråd  
             }
-            
+            HighestBid.Content = bid;
             BidListBox.Items.Add("Bud modtaget på: " + bid);
         }
 

@@ -11,13 +11,14 @@
     <Grid>
         <ListBox x:Name="BidListBox" HorizontalAlignment="Left" Height="321" VerticalAlignment="Top" Width="228" Margin="10,143,0,0"/>
         <Label x:Name="label" Content="Auktionshuset" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="96" Margin="10,10,0,0" Width="619"/>
-        <Label x:Name="label1" Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="243,143,0,0" Height="53" Width="474" FontSize="32" FontWeight="Bold"/>
+        <Label x:Name="BiddingItem" Content="Forbinder til server..." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="243,143,0,0" Height="53" Width="474" FontSize="32" FontWeight="Bold"/>
         <Label x:Name="label1_Copy" Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="243,201,0,0" Height="89" Width="474"/>
-        <Label x:Name="label2" Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="243,295,0,0"/>
+        <Label Content="Højeste bud" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="243,295,0,0"/>
         <Label x:Name="label2_Copy" Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="679,295,0,0"/>
         <Label x:Name="label3" Content="Bud" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="243,408,0,0" FontWeight="Bold"/>
         <TextBox x:Name="BidTextBox" HorizontalAlignment="Left" Height="29" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="243,434,0,0"/>
         <Button x:Name="button" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="368,434,0,0" Click="button_Click"/>
+        <Label x:Name="HighestBid" Content="130" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="243,321,0,0" FontSize="32"/>
 
     </Grid>
 </Controls:MetroWindow>
