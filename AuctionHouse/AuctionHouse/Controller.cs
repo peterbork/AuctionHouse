@@ -11,14 +11,17 @@ namespace AuctionHouse {
         Client client;
         MainWindow mainWindow;
         ThreadMonitor threadMonitor = new ThreadMonitor();
+        DateTime time;
+        bool finished = false;
 
         public Controller(MainWindow window) {
             mainWindow = window;
             // Set up element events
             threadMonitor.NewBidEvent += mainWindow.BidReceiver;
             threadMonitor.ChangeBiddingItemEvent += mainWindow.SetBiddingItem;
+            threadMonitor.UpdateTimeRemainingEvent += mainWindow.TimeRemaining;
 
-            client = new Client(this, "127.0.0.1", 1337);
+            client = new Client(this, "127.0.0.1", 1234);
             client.SetMonitor(threadMonitor);
             Thread h = new Thread(client.Start);
             h.Start();
@@ -31,13 +34,28 @@ namespace AuctionHouse {
         public void MessageReceiver(string message) {
             string command = message.Split(':')[0];
             string parameter = message.Split(':')[1];
-            Console.WriteLine("called");
+
             if (command == "Bid") {
                 threadMonitor.NewBid(parameter);
-            }else if (command == "SetBiddingItem") {
+            } else if (command == "SetBiddingItem") {
                 threadMonitor.ChangeBiddingItem(parameter);
-            }else if (command == "Error") {
+            } else if (command == "Time") {
+                time = Convert.ToDateTime(parameter);
+                Thread timeThread = new Thread(UpdateTimer);
+                timeThread.Start();
+            } else if (command == "Hammer") { // time
+                finished = true;
+                threadMonitor.UpdateTimeRemaining(parameter);
+            } else if (command == "Error") {
                 mainWindow.DisplayError(parameter);
+            }
+        }
+
+        public void UpdateTimer() {
+            while (!finished) {
+                string timeRemaining = time.Subtract(DateTime.Now).ToString("hh\\:mm\\:ss");
+                threadMonitor.UpdateTimeRemaining(timeRemaining);
+                Thread.Sleep(1000);
             }
         }
     }

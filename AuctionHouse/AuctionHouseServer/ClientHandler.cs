@@ -105,7 +105,8 @@ namespace AuctionHouseServer {
                 }
             }
 
-            // sendToClient(("Echo:" + input);        // ændring fra echo server - ikke med i chat
+            // sendToClient(("Echo:" + input);        
+            // ændring fra echo server - ikke med i chat
             Console.WriteLine(input);
 
 

@@ -47,7 +47,7 @@ namespace PeterServer {
 
             cbTime.Items.Add(1);
 
-            tcpListener = new TcpListener(IPAddress.Any, 1234);
+            tcpListener = new TcpListener(IPAddress.Parse("127.0.0.1"), 1234);
             tcpListener.Start();
 
             tbConsole.Text += "Server started\n";
@@ -79,14 +79,14 @@ namespace PeterServer {
 
             while (true) {
                 string message = reader.ReadLine();
-                List<string> commands = message.Split('|').ToList<string>();
+                List<string> commands = message.Split(':').ToList<string>();
                 string command = commands[0];
                 commands.RemoveAt(0);
-                if (command == "bid") {
+                if (command == "Bid") {
                     var diffInSeconds = (Convert.ToDateTime(timer) - DateTime.Now).TotalSeconds;
 
                     threadMonitor.ThreadAction(tcpClient.Client.LocalEndPoint.ToString() + ": " + (string)commands[0] + "\n");
-                    BroadCast("HeighestBid|" + commands[0], tcpClient);
+                    BroadCast("Bid: " + commands[0], tcpClient);
                     Auctions[0].bids.Add(int.Parse(commands[0]), tcpClient);
 
                     // extend timer by 1 minute
@@ -129,11 +129,11 @@ namespace PeterServer {
             for (int i = 0; i < tcpClientsList.Count; i++) {
                 StreamWriter sWriter = new StreamWriter(tcpClientsList[i].GetStream());
                 if (tcpClientsList[i] == newClient) {
-                    sWriter.WriteLine("ChangeAuctionItem|" + Auctions[0].Name);
+                    sWriter.WriteLine("SetBiddingItem: " + Auctions[0].Name);
                     sWriter.Flush();
-                    sWriter.WriteLine("Time|" + timer);
+                    sWriter.WriteLine("Time: " + timer);
                     sWriter.Flush();
-                    sWriter.WriteLine("HeighestBid|" + Auctions[0].StartingPrice);
+                    sWriter.WriteLine("Bid: " + Auctions[0].StartingPrice);
                     sWriter.Flush();
                 }
             }
@@ -142,19 +142,19 @@ namespace PeterServer {
         public static void BroadCastCountdown() {
             for (int i = 0; i < tcpClientsList.Count; i++) {
                 StreamWriter sWriter = new StreamWriter(tcpClientsList[i].GetStream());
-                sWriter.WriteLine("console|Første");
+                sWriter.WriteLine("Hammer: Første");
                 sWriter.Flush();
             }
             Thread.Sleep(5000);
             for (int i = 0; i < tcpClientsList.Count; i++) {
                 StreamWriter sWriter = new StreamWriter(tcpClientsList[i].GetStream());
-                sWriter.WriteLine("console|Anden");
+                sWriter.WriteLine("Hammer: Anden");
                 sWriter.Flush();
             }
             Thread.Sleep(3000);
             for (int i = 0; i < tcpClientsList.Count; i++) {
                 StreamWriter sWriter = new StreamWriter(tcpClientsList[i].GetStream());
-                sWriter.WriteLine("console|Solgt!");
+                sWriter.WriteLine("Hammer: Solgt!");
                 sWriter.Flush();
             }
         }
@@ -163,7 +163,7 @@ namespace PeterServer {
             timer = timer.AddMinutes(0.10);
             for (int i = 0; i < tcpClientsList.Count; i++) {
                 StreamWriter sWriter = new StreamWriter(tcpClientsList[i].GetStream());
-                sWriter.WriteLine("Time|" + timer);
+                sWriter.WriteLine("Time: " + timer);
                 sWriter.Flush();
             }
         }
@@ -225,11 +225,11 @@ namespace PeterServer {
             for (int i = 0; i < tcpClientsList.Count; i++) {
                 StreamWriter sWriter = new StreamWriter(tcpClientsList[i].GetStream());
 
-                sWriter.WriteLine("ChangeAuctionItem|" + Auctions[0].Name);
+                sWriter.WriteLine("SetBiddingItem: " + Auctions[0].Name);
                 sWriter.Flush();
-                sWriter.WriteLine("Time|" + DateTime.Now.AddMinutes(Convert.ToDouble(Auctions[0].Time)));
+                sWriter.WriteLine("Time: " + DateTime.Now.AddMinutes(Convert.ToDouble(Auctions[0].Time)));
                 sWriter.Flush();
-                sWriter.WriteLine("HeighestBid|" + Auctions[0].StartingPrice);
+                sWriter.WriteLine("Bid: " + Auctions[0].StartingPrice);
                 sWriter.Flush();
                 timer = DateTime.Now.AddMinutes(Convert.ToDouble(Auctions[0].Time));
                 AuctionTimer();

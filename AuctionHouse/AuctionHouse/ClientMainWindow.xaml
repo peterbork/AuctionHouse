@@ -14,10 +14,10 @@
         <Label x:Name="BiddingItem" Content="Venter på server..." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="243,143,0,0" Height="53" Width="474" FontSize="32" FontWeight="Bold"/>
         <Label x:Name="label1_Copy" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="243,201,0,0" Height="89" Width="474"/>
         <Label Content="Højeste bud" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="243,295,0,0"/>
-        <Label x:Name="label2_Copy" Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="679,295,0,0"/>
+        <Label x:Name="TimeLeft" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="650,295,0,0"/>
         <Label x:Name="label3" Content="Bud" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="243,408,0,0" FontWeight="Bold"/>
         <TextBox x:Name="BidTextBox" HorizontalAlignment="Left" Height="29" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="243,434,0,0"/>
-        <Button x:Name="button" Content="Byd" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="368,434,0,0" Click="button_Click"/>
+        <Button x:Name="button" IsDefault="True" Content="Byd" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="368,434,0,0" Click="button_Click"/>
         <Label x:Name="HighestBid" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="243,321,0,0" FontSize="32"/>
 
     </Grid>

@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace AuctionHouse {
     /// <summary>
@@ -51,6 +52,15 @@ namespace AuctionHouse {
             }
             HighestBid.Content = bid;
             BidListBox.Items.Add("Bud modtaget på: " + bid);
+        }
+
+        public void TimeRemaining(string time) {
+            if (!this.Dispatcher.CheckAccess()) {
+                this.Dispatcher.Invoke(new ThreadMonitor.ThreadEventType(TimeRemaining), time);  // indirekte recursion, men nu fra GUI tråd
+                return;     // stop her, da metoden nu "gentages" (Invoke) fra GUI tråd  
+            }
+            
+            TimeLeft.Content = time;
         }
 
         public void DisplayError(string message) {
