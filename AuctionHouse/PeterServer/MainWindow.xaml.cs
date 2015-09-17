@@ -47,7 +47,7 @@ namespace PeterServer {
 
             cbTime.Items.Add(1);
 
-            tcpListener = new TcpListener(IPAddress.Parse("127.0.0.1"), 1234);
+            tcpListener = new TcpListener(IPAddress.Any, 1234);
             tcpListener.Start();
 
             tbConsole.Text += "Server started\n";
