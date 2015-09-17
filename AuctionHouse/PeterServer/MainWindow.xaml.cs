@@ -79,7 +79,7 @@ namespace PeterServer {
 
             while (true) {
                 string message = reader.ReadLine();
-                List<string> commands = message.Split(':').ToList<string>();
+                List<string> commands = message.Split('|').ToList<string>();
                 string command = commands[0];
                 commands.RemoveAt(0);
                 if (command == "Bid") {
