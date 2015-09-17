@@ -32,8 +32,8 @@ namespace AuctionHouse {
         }
 
         public void MessageReceiver(string message) {
-            string command = message.Split('|')[0];
-            string parameter = message.Split('|')[1];
+            string command = message.Split(':')[0];
+            string parameter = message.Split(':')[1];
 
             if (command == "Bid") {
                 threadMonitor.NewBid(parameter);

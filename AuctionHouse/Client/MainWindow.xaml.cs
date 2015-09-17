@@ -34,7 +34,7 @@ namespace PeterClient {
             threadMonitor.ThreadChangeAuctionHeighestBidEvent += Thread_ChangeAuctionHeighestBid;
 
             
-            TcpClient tcpClient = new TcpClient("127.0.0.1", 1234);
+            TcpClient tcpClient = new TcpClient("10.140.65.85", 1234);
             tbConsole.Text += "Connected to server.";
 
             sWriter = new StreamWriter(tcpClient.GetStream());
