@@ -86,7 +86,7 @@ namespace PeterServer {
                     var diffInSeconds = (Convert.ToDateTime(timer) - DateTime.Now).TotalSeconds;
 
                     threadMonitor.ThreadAction(tcpClient.Client.LocalEndPoint.ToString() + ": " + (string)commands[0] + "\n");
-                    BroadCast("Bid: " + commands[0], tcpClient);
+                    BroadCast("Bid| " + commands[0], tcpClient);
                     Auctions[0].bids.Add(int.Parse(commands[0]), tcpClient);
 
                     // extend timer by 1 minute
@@ -163,7 +163,7 @@ namespace PeterServer {
             timer = timer.AddMinutes(0.10);
             for (int i = 0; i < tcpClientsList.Count; i++) {
                 StreamWriter sWriter = new StreamWriter(tcpClientsList[i].GetStream());
-                sWriter.WriteLine("Time: " + timer);
+                sWriter.WriteLine("Time| " + timer);
                 sWriter.Flush();
             }
         }
