@@ -129,11 +129,11 @@ namespace PeterServer {
             for (int i = 0; i < tcpClientsList.Count; i++) {
                 StreamWriter sWriter = new StreamWriter(tcpClientsList[i].GetStream());
                 if (tcpClientsList[i] == newClient) {
-                    sWriter.WriteLine("SetBiddingItem: " + Auctions[0].Name);
+                    sWriter.WriteLine("SetBiddingItem| " + Auctions[0].Name);
                     sWriter.Flush();
-                    sWriter.WriteLine("Time: " + timer);
+                    sWriter.WriteLine("Time| " + timer);
                     sWriter.Flush();
-                    sWriter.WriteLine("Bid: " + Auctions[0].StartingPrice);
+                    sWriter.WriteLine("Bid| " + Auctions[0].StartingPrice);
                     sWriter.Flush();
                 }
             }
@@ -142,19 +142,19 @@ namespace PeterServer {
         public static void BroadCastCountdown() {
             for (int i = 0; i < tcpClientsList.Count; i++) {
                 StreamWriter sWriter = new StreamWriter(tcpClientsList[i].GetStream());
-                sWriter.WriteLine("Hammer: Første");
+                sWriter.WriteLine("Hammer| Første");
                 sWriter.Flush();
             }
             Thread.Sleep(5000);
             for (int i = 0; i < tcpClientsList.Count; i++) {
                 StreamWriter sWriter = new StreamWriter(tcpClientsList[i].GetStream());
-                sWriter.WriteLine("Hammer: Anden");
+                sWriter.WriteLine("Hammer| Anden");
                 sWriter.Flush();
             }
             Thread.Sleep(3000);
             for (int i = 0; i < tcpClientsList.Count; i++) {
                 StreamWriter sWriter = new StreamWriter(tcpClientsList[i].GetStream());
-                sWriter.WriteLine("Hammer: Solgt!");
+                sWriter.WriteLine("Hammer| Solgt!");
                 sWriter.Flush();
             }
         }
@@ -225,11 +225,11 @@ namespace PeterServer {
             for (int i = 0; i < tcpClientsList.Count; i++) {
                 StreamWriter sWriter = new StreamWriter(tcpClientsList[i].GetStream());
 
-                sWriter.WriteLine("SetBiddingItem: " + Auctions[0].Name);
+                sWriter.WriteLine("SetBiddingItem| " + Auctions[0].Name);
                 sWriter.Flush();
-                sWriter.WriteLine("Time: " + DateTime.Now.AddMinutes(Convert.ToDouble(Auctions[0].Time)));
+                sWriter.WriteLine("Time| " + DateTime.Now.AddMinutes(Convert.ToDouble(Auctions[0].Time)));
                 sWriter.Flush();
-                sWriter.WriteLine("Bid: " + Auctions[0].StartingPrice);
+                sWriter.WriteLine("Bid| " + Auctions[0].StartingPrice);
                 sWriter.Flush();
                 timer = DateTime.Now.AddMinutes(Convert.ToDouble(Auctions[0].Time));
                 AuctionTimer();

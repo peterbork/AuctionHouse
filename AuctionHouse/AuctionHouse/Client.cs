@@ -45,7 +45,7 @@ namespace AuctionHouse {
             while (!stopped) {
                 try {
                     string message = reader.ReadLine();
-                    if (message.Contains(":"))
+                    if (message.Contains("|"))
                         Controller.MessageReceiver(message);
                     else
                         Console.WriteLine(message);
@@ -69,7 +69,7 @@ namespace AuctionHouse {
                 StreamWriter writer = new StreamWriter(stream);
                 writer.AutoFlush = true;
 
-                writer.WriteLine("Bid: " + bid);
+                writer.WriteLine("Bid| " + bid);
             } else
                 Controller.MessageReceiver("Error: Ikke forbundet til server");
         }
