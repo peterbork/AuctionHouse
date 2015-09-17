@@ -1,0 +1,22 @@
+﻿<Window x:Class="PeterServer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PeterServer"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <TextBox x:Name="tbConsole" HorizontalAlignment="Left" Height="301" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="345" Margin="10,10,0,0"/>
+        <Button x:Name="btnStartAuction" Content="Start Auktion" HorizontalAlignment="Left" VerticalAlignment="Top" Width="134" Margin="360,115,0,0" Click="btnStartAuction_Click"/>
+        <ListBox x:Name="listBoxAuctions" HorizontalAlignment="Left" Height="69" VerticalAlignment="Top" Width="134" Margin="360,10,0,0"/>
+        <Label x:Name="label" Content="Navn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="360,139,0,0"/>
+        <TextBox x:Name="tbName" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="134" Margin="360,160,0,0"/>
+        <Label x:Name="label1" Content="Tid" HorizontalAlignment="Left" Margin="360,188,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cbTime" HorizontalAlignment="Left" Margin="391,192,0,0" VerticalAlignment="Top" Width="103"/>
+        <Button x:Name="btnAddAuction" Content="Tilføj Auktion" HorizontalAlignment="Left" Margin="360,219,0,0" VerticalAlignment="Top" Width="134" Click="btnAddAuction_Click"/>
+        <Label x:Name="label2" Content="Tid:" HorizontalAlignment="Left" Margin="360,84,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblTime" Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="394,84,0,0"/>
+
+    </Grid>
+</Window>

@@ -34,5 +34,7 @@ namespace AuctionHouseServer {
             Thread serverThread = new Thread(Server.Start);
             serverThread.Start();
         }
+
+
     }
 }
