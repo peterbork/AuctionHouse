@@ -45,7 +45,7 @@ namespace PeterServer {
             Auctions.Add(testAuction);
             listBoxAuctions.Items.Add(Auctions[0].Name);
 
-            cbTime.Items.Add(60);
+            cbTime.Items.Add(1);
 
             tcpListener = new TcpListener(IPAddress.Any, 1234);
             tcpListener.Start();
