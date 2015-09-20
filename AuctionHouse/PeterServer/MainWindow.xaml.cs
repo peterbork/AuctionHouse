@@ -13,7 +13,7 @@ namespace PeterServer {
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window {
-        ThreadMonitor threadMonitor = new ThreadMonitor("Server");
+        ThreadMonitor threadMonitor = new ThreadMonitor();
         //private DateTime AuctionStartTime;
         private DateTime timer;
         private static bool AuctionRunning;
@@ -26,15 +26,15 @@ namespace PeterServer {
         private static List<TcpClient> tcpClientsList = new List<TcpClient>();
         private static Thread ThreadCountdown;
 
-
         public MainWindow() {
             InitializeComponent();
+
             threadMonitor.ThreadEvent += Thread_MessageReciever;
 
             Auction testAuction = new Auction("Sofabord", 1, 10);
             Auctions.Add(testAuction);
-            listBoxAuctions.Items.Add(Auctions[0].Name);
 
+            listBoxAuctions.Items.Add(Auctions[0].Name);
             cbTime.Items.Add(1);
 
             tcpListener = new TcpListener(IPAddress.Any, 1234);
@@ -45,6 +45,11 @@ namespace PeterServer {
             acceptingClientsThread.Start();
 
         }
+
+        public void AddAuctionItem(string name) {
+            listBoxAuctions.Items.Add(name);
+        }
+
         public void AcceptingClients() {
             while (true) {
                 TcpClient tcpClient = tcpListener.AcceptTcpClient();
@@ -158,7 +163,7 @@ namespace PeterServer {
             }
         }
         #endregion
-        private void Thread_MessageReciever(string message) {
+        public void Thread_MessageReciever(string message) {
             if (!this.Dispatcher.CheckAccess()) {
                 this.Dispatcher.Invoke(new ThreadMonitor.ThreadEventType(Thread_MessageReciever), message);
                 return;

@@ -56,6 +56,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Auction.cs" />
+    <Compile Include="Broadcaster.cs" />
+    <Compile Include="ClientHandler.cs" />
+    <Compile Include="Server.cs" />
     <Compile Include="ThreadMonitor.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
